@@ -1,0 +1,9 @@
+[submodule "vagrant/cookbooks/kafka"]
+	path = vagrant/cookbooks/kafka
+	url = https://github.com/mthssdrbrg/kafka-cookbook.git
+[submodule "vagrant/cookbooks/zookeeper"]
+	path = vagrant/cookbooks/zookeeper
+	url = https://github.com/SimpleFinance/chef-zookeeper.git
+[submodule "vagrant/cookbooks/java"]
+	path = vagrant/cookbooks/java
+	url = https://github.com/socrata-cookbooks/java.git

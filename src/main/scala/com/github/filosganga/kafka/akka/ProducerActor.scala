@@ -21,7 +21,8 @@ class ProducerActor(pc: ProducerConfig) extends Actor with ActorLogging{
   private def createMessage(event: Event): KeyedMessage[Protocol.Event.Key, Protocol.Event] = {
 
     val key = Protocol.Event.Key.newBuilder()
-      .setTimestamp(System.currentTimeMillis())
+      .setId(event.id)
+      .setTimestamp(event.timestamp)
       .setType(event.tipe.name)
       .setVersion(event.tipe.version)
       .build()

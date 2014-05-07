@@ -6,7 +6,7 @@ import Event._
  *
  * @author Filippo De Luca - fdeluca@expedia.com
  */
-case class Event(id: String, tipe: Type, payload: String) {
+case class Event(id: String, timestamp: Long, tipe: Type, payload: String) {
 
 }
 

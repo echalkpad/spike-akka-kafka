@@ -1,6 +1,6 @@
 package com.github.filosganga.kafka.akka
 
-import akka.actor.{ActorLogging, Actor}
+import akka.actor.{ActorRef, ActorLogging, Actor}
 import kafka.consumer._
 import kafka.message.MessageAndMetadata
 
@@ -18,6 +18,8 @@ class ConsumerActor(consumerConfig: ConsumerConfig) extends Actor with ActorLogg
 
   private val consumer = createConsumer(consumerConfig)
   private val stream = createStream("event")
+
+  private val eventBus = new LookupEventBus
 
   private def createStream(topic: String) = {
     val streams = consumer.createMessageStreams(
@@ -48,6 +50,14 @@ class ConsumerActor(consumerConfig: ConsumerConfig) extends Actor with ActorLogg
 
     case Commit =>
       consumer.commitOffsets
+
+    case Subscribe(tipe) =>
+      eventBus.subscribe(sender(), tipe)
+
+    case Unsubscribe(tipe) =>
+      eventBus.unsubscribe(sender(), tipe)
+
+
   }
 
   private def parseEventType(mm: MessageAndMetadata[Protocol.Event.Key, Protocol.Event]): Event.Type = {
@@ -59,15 +69,16 @@ class ConsumerActor(consumerConfig: ConsumerConfig) extends Actor with ActorLogg
 
   private def parseEvent(mm: MessageAndMetadata[Protocol.Event.Key, Protocol.Event]): Event = {
 
+    val key = mm.key()
     val message = mm.message()
 
-    Event("", parseEventType(mm), message.getPayload)
+    Event(key.getId, key.getTimestamp, parseEventType(mm), message.getPayload)
   }
 
   private def process(eventType: Event.Type, event: => Event) {
     event match {
-      case Event(_, _, payload) =>
-        log.info(s"Received Event: $payload")
+      case e =>
+        eventBus.publish(e)
     }
   }
 
@@ -82,6 +93,10 @@ object ConsumerActor {
   case object Consume
 
   case object Commit
+
+  case class Subscribe(tipe: Event.Type)
+
+  case class Unsubscribe(tipe: Event.Type)
 
   def createConsumer(cc: ConsumerConfig) = {
 

@@ -124,45 +124,60 @@ public final class Protocol {
     public interface KeyOrBuilder
         extends com.google.protobuf.MessageOrBuilder {
 
-      // required string type = 1;
+      // required string id = 10;
       /**
-       * <code>required string type = 1;</code>
+       * <code>required string id = 10;</code>
+       */
+      boolean hasId();
+      /**
+       * <code>required string id = 10;</code>
+       */
+      java.lang.String getId();
+      /**
+       * <code>required string id = 10;</code>
+       */
+      com.google.protobuf.ByteString
+          getIdBytes();
+
+      // required int64 timestamp = 20;
+      /**
+       * <code>required int64 timestamp = 20;</code>
+       */
+      boolean hasTimestamp();
+      /**
+       * <code>required int64 timestamp = 20;</code>
+       */
+      long getTimestamp();
+
+      // required string type = 30;
+      /**
+       * <code>required string type = 30;</code>
        */
       boolean hasType();
       /**
-       * <code>required string type = 1;</code>
+       * <code>required string type = 30;</code>
        */
       java.lang.String getType();
       /**
-       * <code>required string type = 1;</code>
+       * <code>required string type = 30;</code>
        */
       com.google.protobuf.ByteString
           getTypeBytes();
 
-      // required string version = 2;
+      // required string version = 40;
       /**
-       * <code>required string version = 2;</code>
+       * <code>required string version = 40;</code>
        */
       boolean hasVersion();
       /**
-       * <code>required string version = 2;</code>
+       * <code>required string version = 40;</code>
        */
       java.lang.String getVersion();
       /**
-       * <code>required string version = 2;</code>
+       * <code>required string version = 40;</code>
        */
       com.google.protobuf.ByteString
           getVersionBytes();
-
-      // required int64 timestamp = 3;
-      /**
-       * <code>required int64 timestamp = 3;</code>
-       */
-      boolean hasTimestamp();
-      /**
-       * <code>required int64 timestamp = 3;</code>
-       */
-      long getTimestamp();
     }
     /**
      * Protobuf type {@code com.github.filosganga.kafka.Event.Key}
@@ -215,19 +230,24 @@ public final class Protocol {
                 }
                 break;
               }
-              case 10: {
+              case 82: {
                 bitField0_ |= 0x00000001;
+                id_ = input.readBytes();
+                break;
+              }
+              case 160: {
+                bitField0_ |= 0x00000002;
+                timestamp_ = input.readInt64();
+                break;
+              }
+              case 242: {
+                bitField0_ |= 0x00000004;
                 type_ = input.readBytes();
                 break;
               }
-              case 18: {
-                bitField0_ |= 0x00000002;
+              case 322: {
+                bitField0_ |= 0x00000008;
                 version_ = input.readBytes();
-                break;
-              }
-              case 24: {
-                bitField0_ |= 0x00000004;
-                timestamp_ = input.readInt64();
                 break;
               }
             }
@@ -270,17 +290,76 @@ public final class Protocol {
       }
 
       private int bitField0_;
-      // required string type = 1;
-      public static final int TYPE_FIELD_NUMBER = 1;
-      private java.lang.Object type_;
+      // required string id = 10;
+      public static final int ID_FIELD_NUMBER = 10;
+      private java.lang.Object id_;
       /**
-       * <code>required string type = 1;</code>
+       * <code>required string id = 10;</code>
        */
-      public boolean hasType() {
+      public boolean hasId() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required string type = 1;</code>
+       * <code>required string id = 10;</code>
+       */
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            id_ = s;
+          }
+          return s;
+        }
+      }
+      /**
+       * <code>required string id = 10;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIdBytes() {
+        java.lang.Object ref = id_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          id_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      // required int64 timestamp = 20;
+      public static final int TIMESTAMP_FIELD_NUMBER = 20;
+      private long timestamp_;
+      /**
+       * <code>required int64 timestamp = 20;</code>
+       */
+      public boolean hasTimestamp() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required int64 timestamp = 20;</code>
+       */
+      public long getTimestamp() {
+        return timestamp_;
+      }
+
+      // required string type = 30;
+      public static final int TYPE_FIELD_NUMBER = 30;
+      private java.lang.Object type_;
+      /**
+       * <code>required string type = 30;</code>
+       */
+      public boolean hasType() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>required string type = 30;</code>
        */
       public java.lang.String getType() {
         java.lang.Object ref = type_;
@@ -297,7 +376,7 @@ public final class Protocol {
         }
       }
       /**
-       * <code>required string type = 1;</code>
+       * <code>required string type = 30;</code>
        */
       public com.google.protobuf.ByteString
           getTypeBytes() {
@@ -313,17 +392,17 @@ public final class Protocol {
         }
       }
 
-      // required string version = 2;
-      public static final int VERSION_FIELD_NUMBER = 2;
+      // required string version = 40;
+      public static final int VERSION_FIELD_NUMBER = 40;
       private java.lang.Object version_;
       /**
-       * <code>required string version = 2;</code>
+       * <code>required string version = 40;</code>
        */
       public boolean hasVersion() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>required string version = 2;</code>
+       * <code>required string version = 40;</code>
        */
       public java.lang.String getVersion() {
         java.lang.Object ref = version_;
@@ -340,7 +419,7 @@ public final class Protocol {
         }
       }
       /**
-       * <code>required string version = 2;</code>
+       * <code>required string version = 40;</code>
        */
       public com.google.protobuf.ByteString
           getVersionBytes() {
@@ -356,41 +435,30 @@ public final class Protocol {
         }
       }
 
-      // required int64 timestamp = 3;
-      public static final int TIMESTAMP_FIELD_NUMBER = 3;
-      private long timestamp_;
-      /**
-       * <code>required int64 timestamp = 3;</code>
-       */
-      public boolean hasTimestamp() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>required int64 timestamp = 3;</code>
-       */
-      public long getTimestamp() {
-        return timestamp_;
-      }
-
       private void initFields() {
+        id_ = "";
+        timestamp_ = 0L;
         type_ = "";
         version_ = "";
-        timestamp_ = 0L;
       }
       private byte memoizedIsInitialized = -1;
       public final boolean isInitialized() {
         byte isInitialized = memoizedIsInitialized;
         if (isInitialized != -1) return isInitialized == 1;
 
+        if (!hasId()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+        if (!hasTimestamp()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
         if (!hasType()) {
           memoizedIsInitialized = 0;
           return false;
         }
         if (!hasVersion()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-        if (!hasTimestamp()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -402,13 +470,16 @@ public final class Protocol {
                           throws java.io.IOException {
         getSerializedSize();
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          output.writeBytes(1, getTypeBytes());
+          output.writeBytes(10, getIdBytes());
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
-          output.writeBytes(2, getVersionBytes());
+          output.writeInt64(20, timestamp_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          output.writeInt64(3, timestamp_);
+          output.writeBytes(30, getTypeBytes());
+        }
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          output.writeBytes(40, getVersionBytes());
         }
         getUnknownFields().writeTo(output);
       }
@@ -421,15 +492,19 @@ public final class Protocol {
         size = 0;
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(1, getTypeBytes());
+            .computeBytesSize(10, getIdBytes());
         }
         if (((bitField0_ & 0x00000002) == 0x00000002)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeBytesSize(2, getVersionBytes());
+            .computeInt64Size(20, timestamp_);
         }
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
           size += com.google.protobuf.CodedOutputStream
-            .computeInt64Size(3, timestamp_);
+            .computeBytesSize(30, getTypeBytes());
+        }
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(40, getVersionBytes());
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSerializedSize = size;
@@ -547,12 +622,14 @@ public final class Protocol {
 
         public Builder clear() {
           super.clear();
-          type_ = "";
+          id_ = "";
           bitField0_ = (bitField0_ & ~0x00000001);
-          version_ = "";
-          bitField0_ = (bitField0_ & ~0x00000002);
           timestamp_ = 0L;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          type_ = "";
           bitField0_ = (bitField0_ & ~0x00000004);
+          version_ = "";
+          bitField0_ = (bitField0_ & ~0x00000008);
           return this;
         }
 
@@ -584,15 +661,19 @@ public final class Protocol {
           if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
             to_bitField0_ |= 0x00000001;
           }
-          result.type_ = type_;
+          result.id_ = id_;
           if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
             to_bitField0_ |= 0x00000002;
           }
-          result.version_ = version_;
+          result.timestamp_ = timestamp_;
           if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
             to_bitField0_ |= 0x00000004;
           }
-          result.timestamp_ = timestamp_;
+          result.type_ = type_;
+          if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+            to_bitField0_ |= 0x00000008;
+          }
+          result.version_ = version_;
           result.bitField0_ = to_bitField0_;
           onBuilt();
           return result;
@@ -609,33 +690,42 @@ public final class Protocol {
 
         public Builder mergeFrom(com.github.filosganga.kafka.Protocol.Event.Key other) {
           if (other == com.github.filosganga.kafka.Protocol.Event.Key.getDefaultInstance()) return this;
-          if (other.hasType()) {
+          if (other.hasId()) {
             bitField0_ |= 0x00000001;
-            type_ = other.type_;
-            onChanged();
-          }
-          if (other.hasVersion()) {
-            bitField0_ |= 0x00000002;
-            version_ = other.version_;
+            id_ = other.id_;
             onChanged();
           }
           if (other.hasTimestamp()) {
             setTimestamp(other.getTimestamp());
+          }
+          if (other.hasType()) {
+            bitField0_ |= 0x00000004;
+            type_ = other.type_;
+            onChanged();
+          }
+          if (other.hasVersion()) {
+            bitField0_ |= 0x00000008;
+            version_ = other.version_;
+            onChanged();
           }
           this.mergeUnknownFields(other.getUnknownFields());
           return this;
         }
 
         public final boolean isInitialized() {
+          if (!hasId()) {
+            
+            return false;
+          }
+          if (!hasTimestamp()) {
+            
+            return false;
+          }
           if (!hasType()) {
             
             return false;
           }
           if (!hasVersion()) {
-            
-            return false;
-          }
-          if (!hasTimestamp()) {
             
             return false;
           }
@@ -661,16 +751,123 @@ public final class Protocol {
         }
         private int bitField0_;
 
-        // required string type = 1;
-        private java.lang.Object type_ = "";
+        // required string id = 10;
+        private java.lang.Object id_ = "";
         /**
-         * <code>required string type = 1;</code>
+         * <code>required string id = 10;</code>
          */
-        public boolean hasType() {
+        public boolean hasId() {
           return ((bitField0_ & 0x00000001) == 0x00000001);
         }
         /**
-         * <code>required string type = 1;</code>
+         * <code>required string id = 10;</code>
+         */
+        public java.lang.String getId() {
+          java.lang.Object ref = id_;
+          if (!(ref instanceof java.lang.String)) {
+            java.lang.String s = ((com.google.protobuf.ByteString) ref)
+                .toStringUtf8();
+            id_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>required string id = 10;</code>
+         */
+        public com.google.protobuf.ByteString
+            getIdBytes() {
+          java.lang.Object ref = id_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            id_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>required string id = 10;</code>
+         */
+        public Builder setId(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          id_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required string id = 10;</code>
+         */
+        public Builder clearId() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          id_ = getDefaultInstance().getId();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required string id = 10;</code>
+         */
+        public Builder setIdBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+          id_ = value;
+          onChanged();
+          return this;
+        }
+
+        // required int64 timestamp = 20;
+        private long timestamp_ ;
+        /**
+         * <code>required int64 timestamp = 20;</code>
+         */
+        public boolean hasTimestamp() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>required int64 timestamp = 20;</code>
+         */
+        public long getTimestamp() {
+          return timestamp_;
+        }
+        /**
+         * <code>required int64 timestamp = 20;</code>
+         */
+        public Builder setTimestamp(long value) {
+          bitField0_ |= 0x00000002;
+          timestamp_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>required int64 timestamp = 20;</code>
+         */
+        public Builder clearTimestamp() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          timestamp_ = 0L;
+          onChanged();
+          return this;
+        }
+
+        // required string type = 30;
+        private java.lang.Object type_ = "";
+        /**
+         * <code>required string type = 30;</code>
+         */
+        public boolean hasType() {
+          return ((bitField0_ & 0x00000004) == 0x00000004);
+        }
+        /**
+         * <code>required string type = 30;</code>
          */
         public java.lang.String getType() {
           java.lang.Object ref = type_;
@@ -684,7 +881,7 @@ public final class Protocol {
           }
         }
         /**
-         * <code>required string type = 1;</code>
+         * <code>required string type = 30;</code>
          */
         public com.google.protobuf.ByteString
             getTypeBytes() {
@@ -700,51 +897,51 @@ public final class Protocol {
           }
         }
         /**
-         * <code>required string type = 1;</code>
+         * <code>required string type = 30;</code>
          */
         public Builder setType(
             java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  bitField0_ |= 0x00000004;
           type_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>required string type = 1;</code>
+         * <code>required string type = 30;</code>
          */
         public Builder clearType() {
-          bitField0_ = (bitField0_ & ~0x00000001);
+          bitField0_ = (bitField0_ & ~0x00000004);
           type_ = getDefaultInstance().getType();
           onChanged();
           return this;
         }
         /**
-         * <code>required string type = 1;</code>
+         * <code>required string type = 30;</code>
          */
         public Builder setTypeBytes(
             com.google.protobuf.ByteString value) {
           if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  bitField0_ |= 0x00000004;
           type_ = value;
           onChanged();
           return this;
         }
 
-        // required string version = 2;
+        // required string version = 40;
         private java.lang.Object version_ = "";
         /**
-         * <code>required string version = 2;</code>
+         * <code>required string version = 40;</code>
          */
         public boolean hasVersion() {
-          return ((bitField0_ & 0x00000002) == 0x00000002);
+          return ((bitField0_ & 0x00000008) == 0x00000008);
         }
         /**
-         * <code>required string version = 2;</code>
+         * <code>required string version = 40;</code>
          */
         public java.lang.String getVersion() {
           java.lang.Object ref = version_;
@@ -758,7 +955,7 @@ public final class Protocol {
           }
         }
         /**
-         * <code>required string version = 2;</code>
+         * <code>required string version = 40;</code>
          */
         public com.google.protobuf.ByteString
             getVersionBytes() {
@@ -774,70 +971,37 @@ public final class Protocol {
           }
         }
         /**
-         * <code>required string version = 2;</code>
+         * <code>required string version = 40;</code>
          */
         public Builder setVersion(
             java.lang.String value) {
           if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000008;
           version_ = value;
           onChanged();
           return this;
         }
         /**
-         * <code>required string version = 2;</code>
+         * <code>required string version = 40;</code>
          */
         public Builder clearVersion() {
-          bitField0_ = (bitField0_ & ~0x00000002);
+          bitField0_ = (bitField0_ & ~0x00000008);
           version_ = getDefaultInstance().getVersion();
           onChanged();
           return this;
         }
         /**
-         * <code>required string version = 2;</code>
+         * <code>required string version = 40;</code>
          */
         public Builder setVersionBytes(
             com.google.protobuf.ByteString value) {
           if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000008;
           version_ = value;
-          onChanged();
-          return this;
-        }
-
-        // required int64 timestamp = 3;
-        private long timestamp_ ;
-        /**
-         * <code>required int64 timestamp = 3;</code>
-         */
-        public boolean hasTimestamp() {
-          return ((bitField0_ & 0x00000004) == 0x00000004);
-        }
-        /**
-         * <code>required int64 timestamp = 3;</code>
-         */
-        public long getTimestamp() {
-          return timestamp_;
-        }
-        /**
-         * <code>required int64 timestamp = 3;</code>
-         */
-        public Builder setTimestamp(long value) {
-          bitField0_ |= 0x00000004;
-          timestamp_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>required int64 timestamp = 3;</code>
-         */
-        public Builder clearTimestamp() {
-          bitField0_ = (bitField0_ & ~0x00000004);
-          timestamp_ = 0L;
           onChanged();
           return this;
         }
@@ -1231,9 +1395,9 @@ public final class Protocol {
   static {
     java.lang.String[] descriptorData = {
       "\n\016protocol.proto\022\033com.github.filosganga." +
-      "kafka\"Q\n\005Event\022\017\n\007payload\030\n \001(\t\0327\n\003Key\022\014" +
-      "\n\004type\030\001 \002(\t\022\017\n\007version\030\002 \002(\t\022\021\n\ttimesta" +
-      "mp\030\003 \002(\003"
+      "kafka\"]\n\005Event\022\017\n\007payload\030\n \001(\t\032C\n\003Key\022\n" +
+      "\n\002id\030\n \002(\t\022\021\n\ttimestamp\030\024 \002(\003\022\014\n\004type\030\036 " +
+      "\002(\t\022\017\n\007version\030( \002(\t"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1251,7 +1415,7 @@ public final class Protocol {
           internal_static_com_github_filosganga_kafka_Event_Key_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_github_filosganga_kafka_Event_Key_descriptor,
-              new java.lang.String[] { "Type", "Version", "Timestamp", });
+              new java.lang.String[] { "Id", "Timestamp", "Type", "Version", });
           return null;
         }
       };

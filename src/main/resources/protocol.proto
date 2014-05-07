@@ -3,9 +3,12 @@ package com.github.filosganga.kafka;
 message Event {
 
     message Key {
-        required string type = 1;
-        required string version = 2;
-        required int64 timestamp = 3;
+        required string id = 10;
+        required int64 timestamp = 20;
+
+        required string type = 30;
+        required string version = 40;
+
     }
 
     optional string payload = 10;
